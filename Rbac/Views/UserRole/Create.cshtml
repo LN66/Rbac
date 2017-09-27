@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_LayoutForm.cshtml";
+}
+<form class="bootstrap-frm" action="@Url.Action("Insert")">
+    <h1>用户角色 - 新增</h1>
+    <label>
+        <span>用户名称</span>
+        @Html.DropDownList("userid", (IEnumerable<SelectListItem>)ViewBag.Useroptions)
+    </label>
+    <label>
+        <span>角色名称</span>
+        @Html.DropDownList("roleid", (IEnumerable<SelectListItem>)ViewBag.Roleoptions)
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="button" class="button" value="提交" />
+    </label>
+</form>
+@section Script
+{
+    <script>
+        $(function() {
+            $(".button").click(function () {
+                parent.location.reload();
+                $.ajax({
+                    url: '@Url.Action("Insert")',
+                    type: "post",
+                    data: $("form").serialize(),
+                    success: function (data) {
+                        if (data.code === 200) {
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            parent.layer.close(index); //再执行关闭
+                        } else {
+                            alert("添加失败");
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+}

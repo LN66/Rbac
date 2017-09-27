@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Rbac.Models.Module>
+<ul>
+    <li>@Html.ActionLink("首页","Index","Home")</li>
+
+    @foreach(var item in Model)
+    {
+          <li>@Html.ActionLink(item.Name, "Index", item.Controller)</li>
+    }
+   
+
+
+
+    @*<li><a href="#">角色管理</a></li>
+    <li><a href="#">角色模块管理</a></li>
+    <li><a href="#">用户管理</a></li>
+    <li><a href="#">用户角色管理</a></li>*@
+</ul>

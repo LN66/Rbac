@@ -1,0 +1,9 @@
+﻿@*@model Rbac.Models.User*@ 
+<span class="logo">RBAC Demo</span>
+<span class="right">
+    欢迎 @ViewBag.UserName
+    [@ViewBag.RoleName]
+
+   @* @Html.DropDownList("role-List",(IEnumerable<SelectListItem>)ViewBag.roleList))*@
+    @Html.ActionLink("注销","Logout","Home")
+</span>

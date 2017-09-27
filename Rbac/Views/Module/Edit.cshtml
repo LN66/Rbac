@@ -1,0 +1,51 @@
+﻿@model Rbac.Models.Module
+@{
+    ViewBag.Title = "模块管理-编辑";
+    Layout = "~/views/_layoutform.cshtml";
+   // <a href="~/views/_layoutform.cshtml">~/views/_layoutform.cshtml</a>
+}
+
+<form class="bootstrap-frm">
+    <h1>模块管理 - 编辑</h1>
+    <label>
+        <span>ID</span>
+        <input type="text" name="Id" value="@Model.Id" readonly="readonly"/>
+    </label>
+    <label>
+        <span>模块名称</span>
+        <input type="text" name="Name" value="@Model.Name" placeholder="请输入模块名称" />
+    </label>
+    <label>
+        <span>控制器</span>
+        <input type="text" name="Controller" value="@Model.Controller" placeholder="请输入控制器名称" />
+    </label>
+    <label>
+        <span>&nbsp;</span>
+        <input type="button" class="button" value="提交" />
+    </label>
+</form>
+
+
+@section Script
+    {
+    <script>
+           $(".button").click(function () {
+               $.ajax({
+                   url: '@Url.Action("Save","Module")',
+                   type: 'post',
+                   data: $("form").serialize(),
+                   success: function (data) {
+                       if (data.code === 200) {
+                           //假设这是iframe页
+                           parent.location.reload();
+                           var index = parent.layer.getFrameIndex(window.name);//先得到当前iframe的索引
+                           parent.layer.close(index);//再执行关闭
+                          
+                       } else {
+                           alert("提交失败");
+                       }
+                   }
+               })
+           })
+    </script>
+}

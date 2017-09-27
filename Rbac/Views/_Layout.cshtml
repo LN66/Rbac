@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Role</title>
+
+
+    <link href="~/content/site.css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="css/site.css" />*@
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <link href="~/content/site.css" rel="stylesheet" />
+    <link href="~/content/table.css" rel="stylesheet" />
+    <script src="~/Scripts/layer.js"></script>
+    <link href="~/content/form.css" rel="stylesheet" />
+    <script src="~/Scripts/index.js"></script>
+    @RenderSection("Style",false)
+
+</head>
+<body>
+    <header>
+        @Html.Action("Header","Home")
+    </header>
+    <div id="body">
+        <nav>
+            @Html.Action("Nav", "Home")
+        </nav>
+        <main>
+            <h2>@ViewBag.Title</h2>
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        ASP.NET MVC 5 - RBAC权限管理案例： RBAC Demo
+    </footer>
+    @RenderSection("Script",false)
+</body>
+</html>
+
